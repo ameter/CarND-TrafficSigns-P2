@@ -185,7 +185,7 @@ For the fifth image, the model is highly confident that this was a Stop sign (pr
 | 1.64907e-13     			| Speed limit (20km/h)				 			      	|
 | 1.42384e-13				    | Speed limit (50km/h)     			|
 
-For the first image, the model is highly confident that this was a End of all speed and passing limits sign (probability of 0.976576), and the image does contain a End of all speed and passing limits sign. The top five soft max probabilities were
+For the sixth image, the model is highly confident that this was a End of all speed and passing limits sign (probability of 0.976576), and the image does contain a End of all speed and passing limits sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
