@@ -18,12 +18,12 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./writeup_images/class_counts.png "Class Counts"
-[image4]: ./test_images/exclamation.png "Traffic Sign 1"
-[image5]: ./test_images/no_entry.png "Traffic Sign 2"
-[image6]: ./test_images/nopass.png "Traffic Sign 3"
-[image7]: ./test_images/priority_road.png "Traffic Sign 4"
-[image8]: ./test_images/stop.png "Traffic Sign 5"
-[image9]: ./test_images/unrestricted.png "Traffic Sign 6"
+[image4]: ./test_images/exclamation.jpg "Traffic Sign 1"
+[image5]: ./test_images/no_entry.jpg "Traffic Sign 2"
+[image6]: ./test_images/nopass.jpg "Traffic Sign 3"
+[image7]: ./test_images/priority_road.jpg "Traffic Sign 4"
+[image8]: ./test_images/stop.jpg "Traffic Sign 5"
+[image9]: ./test_images/unrestricted.jpg "Traffic Sign 6"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
