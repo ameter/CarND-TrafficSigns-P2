@@ -21874,14 +21874,111 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Read-Sign-Names">Read Sign Names<a class="anchor-link" href="#Read-Sign-Names">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Print out the top five softmax probabilities for the predictions on the German traffic sign images found on the web. </span>
-<span class="c1">### Feel free to use as many code cells as needed.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 
+<span class="n">sign_names</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;signnames.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">sign_names</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ClassId&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;SignName&#39;</span><span class="p">]</span>
+<span class="n">sign_names</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[53]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;0&#39;: &#39;Speed limit (20km/h)&#39;,
+ &#39;1&#39;: &#39;Speed limit (30km/h)&#39;,
+ &#39;10&#39;: &#39;No passing for vehicles over 3.5 metric tons&#39;,
+ &#39;11&#39;: &#39;Right-of-way at the next intersection&#39;,
+ &#39;12&#39;: &#39;Priority road&#39;,
+ &#39;13&#39;: &#39;Yield&#39;,
+ &#39;14&#39;: &#39;Stop&#39;,
+ &#39;15&#39;: &#39;No vehicles&#39;,
+ &#39;16&#39;: &#39;Vehicles over 3.5 metric tons prohibited&#39;,
+ &#39;17&#39;: &#39;No entry&#39;,
+ &#39;18&#39;: &#39;General caution&#39;,
+ &#39;19&#39;: &#39;Dangerous curve to the left&#39;,
+ &#39;2&#39;: &#39;Speed limit (50km/h)&#39;,
+ &#39;20&#39;: &#39;Dangerous curve to the right&#39;,
+ &#39;21&#39;: &#39;Double curve&#39;,
+ &#39;22&#39;: &#39;Bumpy road&#39;,
+ &#39;23&#39;: &#39;Slippery road&#39;,
+ &#39;24&#39;: &#39;Road narrows on the right&#39;,
+ &#39;25&#39;: &#39;Road work&#39;,
+ &#39;26&#39;: &#39;Traffic signals&#39;,
+ &#39;27&#39;: &#39;Pedestrians&#39;,
+ &#39;28&#39;: &#39;Children crossing&#39;,
+ &#39;29&#39;: &#39;Bicycles crossing&#39;,
+ &#39;3&#39;: &#39;Speed limit (60km/h)&#39;,
+ &#39;30&#39;: &#39;Beware of ice/snow&#39;,
+ &#39;31&#39;: &#39;Wild animals crossing&#39;,
+ &#39;32&#39;: &#39;End of all speed and passing limits&#39;,
+ &#39;33&#39;: &#39;Turn right ahead&#39;,
+ &#39;34&#39;: &#39;Turn left ahead&#39;,
+ &#39;35&#39;: &#39;Ahead only&#39;,
+ &#39;36&#39;: &#39;Go straight or right&#39;,
+ &#39;37&#39;: &#39;Go straight or left&#39;,
+ &#39;38&#39;: &#39;Keep right&#39;,
+ &#39;39&#39;: &#39;Keep left&#39;,
+ &#39;4&#39;: &#39;Speed limit (70km/h)&#39;,
+ &#39;40&#39;: &#39;Roundabout mandatory&#39;,
+ &#39;41&#39;: &#39;End of no passing&#39;,
+ &#39;42&#39;: &#39;End of no passing by vehicles over 3.5 metric tons&#39;,
+ &#39;5&#39;: &#39;Speed limit (80km/h)&#39;,
+ &#39;6&#39;: &#39;End of speed limit (80km/h)&#39;,
+ &#39;7&#39;: &#39;Speed limit (100km/h)&#39;,
+ &#39;8&#39;: &#39;Speed limit (120km/h)&#39;,
+ &#39;9&#39;: &#39;No passing&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Get-Softmax-Probabilities">Get Softmax Probabilities<a class="anchor-link" href="#Get-Softmax-Probabilities">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Prints out the top five softmax probabilities for the predictions on the German traffic sign images found on the web. </span>
 
 <span class="n">softmax_probabilities</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span><span class="mi">5</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>
@@ -21905,7 +22002,7 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+<div class="prompt output_prompt">Out[46]:</div>
 
 
 
@@ -21930,6 +22027,128 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
        [32, 41, 36,  6, 35]], dtype=int32))</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_probabilities</span><span class="o">.</span><span class="n">indices</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sign </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">[</span><span class="nb">print</span> <span class="p">(</span><span class="n">sign_names</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_probabilities</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sign </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">[</span><span class="nb">print</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sign 1:
+General caution
+Traffic signals
+Pedestrians
+Road narrows on the right
+Right-of-way at the next intersection
+
+Sign 2:
+No entry
+Stop
+No passing
+Speed limit (20km/h)
+No passing for vehicles over 3.5 metric tons
+
+Sign 3:
+No passing
+No vehicles
+Vehicles over 3.5 metric tons prohibited
+No passing for vehicles over 3.5 metric tons
+Speed limit (60km/h)
+
+Sign 4:
+Priority road
+Stop
+Keep right
+Speed limit (30km/h)
+Speed limit (80km/h)
+
+Sign 5:
+Stop
+Speed limit (30km/h)
+Yield
+Speed limit (20km/h)
+Speed limit (50km/h)
+
+Sign 6:
+End of all speed and passing limits
+End of no passing
+Go straight or right
+End of speed limit (80km/h)
+Ahead only
+
+Sign 1:
+1.0
+3.54746e-09
+2.8323e-13
+1.36002e-18
+5.36388e-23
+
+Sign 2:
+1.0
+4.03275e-22
+8.01291e-23
+5.98542e-28
+2.28292e-32
+
+Sign 3:
+1.0
+3.24911e-16
+4.38651e-17
+3.12406e-17
+1.84159e-20
+
+Sign 4:
+1.0
+1.52736e-15
+1.11633e-17
+9.0961e-18
+1.32395e-18
+
+Sign 5:
+1.0
+3.60673e-10
+3.80721e-13
+1.64907e-13
+1.42384e-13
+
+Sign 6:
+0.976576
+0.0232536
+9.91662e-05
+4.7699e-05
+1.16619e-05
+
+</pre>
+</div>
 </div>
 
 </div>
