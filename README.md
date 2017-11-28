@@ -17,13 +17,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./writeup_images/class_counts.jpg "Class Counts"
-[image3]: ./examples/placeholder.png "Traffic Sign 1"
-[image4]: ./examples/placeholder.png "Traffic Sign 2"
-[image5]: ./examples/placeholder.png "Traffic Sign 3"
-[image6]: ./examples/placeholder.png "Traffic Sign 4"
-[image7]: ./examples/placeholder.png "Traffic Sign 5"
-[image8]: ./examples/placeholder.png "Traffic Sign 6"
+[image1]: ./writeup_images/class_counts.png "Class Counts"
+[image4]: ./test_images/exclamation.png "Traffic Sign 1"
+[image5]: ./test_images/no_entry.png "Traffic Sign 2"
+[image6]: ./test_images/nopass.png "Traffic Sign 3"
+[image7]: ./test_images/priority_road.png "Traffic Sign 4"
+[image8]: ./test_images/stop.png "Traffic Sign 5"
+[image9]: ./test_images/unrestricted.png "Traffic Sign 6"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -84,6 +84,7 @@ My final model consisted of the following layers:
 | 4. RELU					|												|
 | 4. Dropout					|												|
 | 5. Fully connected		    | Input = 84. Output = 43.		|
+| Output         		| Logits for 43 classes 							| 
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
@@ -93,33 +94,26 @@ To train the model, I used an Amazon AWS g2.2xlarge GPU instance based on the ud
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* validation set accuracy of 0.962
+* test set accuracy of 0.952
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+I began with the LeNet-5 architecture from the CNN lab.  I felt it was a reasonable place to start because it worked well with other image classification use cases.  When I first implemented it and trained it with the street sign data set, it achieved approximately 95% accuracy on the valication set out of the box.  I thought this was great and would not require any further optimization to meet the project goal of greater than 93% accuracy.  Thinking I was done, I ran it on the test set and only got 86% accuracy.  It was clearly overfitting and needed more work, so I regretted running the test set, oops!
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+The major improvment I made to the LeNet-5 architecture was adding dropout to each layer.  This greatly helped with the overfitting problem, but now my validation accuracy was lower.  I then normalized my input data, and after correcting the normalization to (pixel - 128.0) / 128.0 as described above, my accuracy improved dramatically.
+
+Given that the final scores were close between validation and test accuracy (0.962 and 0.952, respectively), it appears that adding dropout did in fact resolve the overfitting issue.
+
 
 ### Test a Model on New Images
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are six German traffic signs that I found on the web:
 
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image7] ![alt text][image8] ![alt text][image9]
 
-The first image might be difficult to classify because ...
+All of these images seemed like they should be relatively easy to classify because they were cropped to only include the sign and they were relatively clear and squarly oriented.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -127,33 +121,81 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| General caution      		| General caution   									| 
+| No entry     			| No entry									|
+| No passing					| No passing										|
+| Priority road	      		| Priority road						 				|
+| Stop		| Stop      							|
+| End of all speed and passing limits		| End of all speed and passing limits     							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 6 of the 6 traffic signs, which gives an accuracy of 100%. This compares favorably to the accuracy on the test set of 0.952.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is highly confident that this was a general caution sign (probability of 1.0), and the image does contain a general caution sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 1.0        			      | General caution  							          	    	| 
+| 3.54746e-09     			| Traffic signals 							          			  |
+| 2.8323e-13					  | Pedestrians										              	  |
+| 1.36002e-18     			| Road narrows on the right					 			      	|
+| 5.36388e-23				    | Right-of-way at the next intersection     			|
 
+For the second image, the model is highly confident that this was a No entry sign (probability of 1.0), and the image does contain a No entry sign. The top five soft max probabilities were
 
-For the second image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | No entry  							          	    	| 
+| 4.03275e-22     			| Stop 							          			  |
+| 8.01291e-23				  | No passing										              	  |
+| 5.98542e-28     			| Speed limit (20km/h)				 			      	|
+| 2.28292e-32				    | No passing for vehicles over 3.5 metric tons  			|
+
+For the third image, the model is highly confident that this was a No passing sign (probability of 1.0), and the image does contain a No passing sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | No passing 							          	    	| 
+| 3.24911e-16     			| No vehicles 							          			  |
+| 4.38651e-17					  | Vehicles over 3.5 metric tons prohibited									              	  |
+| 3.12406e-17     			| No passing for vehicles over 3.5 metric tons				 			      	|
+| 1.84159e-20				    | Speed limit (60km/h)    			|
+
+For the fourth image, the model is highly confident that this was a Priority road sign (probability of 1.0), and the image does contain a Priority road sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | Priority road  							          	    	| 
+| 1.52736e-15     			| Stop							          			  |
+| 1.11633e-17					  | Keep right										              	  |
+| 9.0961e-18     			| Speed limit (30km/h)				 			      	|
+| 1.32395e-18				    | Speed limit (80km/h)    			|
+
+For the fifth image, the model is highly confident that this was a Stop sign (probability of 1.0), and the image does contain a Stop sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | Stop  							          	    	| 
+| 3.60673e-10    			| Speed limit (30km/h)							          			  |
+| 3.80721e-13					  | Yield										              	  |
+| 1.64907e-13     			| Speed limit (20km/h)				 			      	|
+| 1.42384e-13				    | Speed limit (50km/h)     			|
+
+For the sixth image, the model is highly confident that this was a End of all speed and passing limits sign (probability of 0.976576), and the image does contain a End of all speed and passing limits sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.976576		      | End of all speed and passing limits	          	    	| 
+| 0.0232536     			| End of no passing							          			  |
+| 9.91662e-05					  | Go straight or right										              	  |
+| 4.7699e-05     			| End of speed limit (80km/h)					 			      	|
+| 1.16619e-05				    | Ahead only     			|
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
-
+Due to time, I did not attempt the optional portion of the project.  I plan to come back to it after the term over the holidays because I'm very interested in it.
