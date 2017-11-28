@@ -135,18 +135,65 @@ The model was able to correctly guess 6 of the 6 traffic signs, which gives an a
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is highly confident that this was a general caution sign (probability of 1.0), and the image does contain a general caution sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 1.0        			      | General caution  							          	    	| 
+| 3.54746e-09     			| Traffic signals 							          			  |
+| 2.8323e-13					  | Pedestrians										              	  |
+| 1.36002e-18     			| Road narrows on the right					 			      	|
+| 5.36388e-23				    | Right-of-way at the next intersection     			|
 
+For the second image, the model is highly confident that this was a No entry sign (probability of 1.0), and the image does contain a No entry sign. The top five soft max probabilities were
 
-For the second image ... 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | No entry  							          	    	| 
+| 4.03275e-22     			| Stop 							          			  |
+| 8.01291e-23				  | No passing										              	  |
+| 5.98542e-28     			| Speed limit (20km/h)				 			      	|
+| 2.28292e-32				    | No passing for vehicles over 3.5 metric tons  			|
+
+For the third image, the model is highly confident that this was a No passing sign (probability of 1.0), and the image does contain a No passing sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | No passing 							          	    	| 
+| 3.24911e-16     			| No vehicles 							          			  |
+| 4.38651e-17					  | Vehicles over 3.5 metric tons prohibited									              	  |
+| 3.12406e-17     			| No passing for vehicles over 3.5 metric tons				 			      	|
+| 1.84159e-20				    | Speed limit (60km/h)    			|
+
+For the fourth image, the model is highly confident that this was a Priority road sign (probability of 1.0), and the image does contain a Priority road sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | Priority road  							          	    	| 
+| 1.52736e-15     			| Stop							          			  |
+| 1.11633e-17					  | Keep right										              	  |
+| 9.0961e-18     			| Speed limit (30km/h)				 			      	|
+| 1.32395e-18				    | Speed limit (80km/h)    			|
+
+For the fifth image, the model is highly confident that this was a Stop sign (probability of 1.0), and the image does contain a Stop sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.0        			      | Stop  							          	    	| 
+| 3.60673e-10    			| Speed limit (30km/h)							          			  |
+| 3.80721e-13					  | Yield										              	  |
+| 1.64907e-13     			| Speed limit (20km/h)				 			      	|
+| 1.42384e-13				    | Speed limit (50km/h)     			|
+
+For the first image, the model is highly confident that this was a End of all speed and passing limits sign (probability of 0.976576), and the image does contain a End of all speed and passing limits sign. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.976576		      | End of all speed and passing limits	          	    	| 
+| 0.0232536     			| End of no passing							          			  |
+| 9.91662e-05					  | Go straight or right										              	  |
+| 4.7699e-05     			| End of speed limit (80km/h)					 			      	|
+| 1.16619e-05				    | Ahead only     			|
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
